@@ -1,0 +1,20 @@
+name: Creates a tag for the repo
+  push:
+    branches:
+      - master 
+jobs:
+  build:
+    name: Tag repo using mix.exs file
+    runs-on: ubuntu-20.04    
+    steps:
+    - name: Checkout master
+      uses: actions/checkout@master
+    - name: Tagging repo using version specified in mix.exs
+      uses: chaitu-zelar/git-autotag-action@v0.5.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VERSION_COMMAND: >
+          cat mix.exs
+            | grep --line-buffer "version: "
+            | grep --extended-regexp --only-matching "\"[-0-9\.\+a-zA-Z]+\""
+            | grep --extended-regexp --only-matching "[-0-9\.\+a-zA-Z]+"    
