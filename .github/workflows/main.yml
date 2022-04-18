@@ -10,9 +10,7 @@ jobs:
     - name: Checkout master
       uses: actions/checkout@master
     - name: Tagging repo using version specified in mix.exs
-      uses: djordon/git-autotag-action@v0.5.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: chaitu-zelar/git-autotag-action@v0.5.0
         VERSION_COMMAND: >
           cat mix.exs
             | grep --line-buffer "version: "
