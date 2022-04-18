@@ -1,5 +1,5 @@
 name: Creates a tag for the repo
-  push:
+push:
     branches:
       - master 
 jobs:
